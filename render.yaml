@@ -1,0 +1,16 @@
+services:
+  - name: trng-health-api
+    type: web_service            # a HTTP service
+    env: python                  # Python environment
+    plan: free                   # choose plan: free, starter, standard, etc.
+    region: oregon               # pick a region close to you
+    branch: main                 # auto-deploy on pushes to this branch
+    buildCommand: 
+      - pip install -r requirements.txt
+    startCommand: 
+      - uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # if you need to fetch your model from S3 or similar, uncomment:
+      #- key: MODEL_URL
+      #  value: https://your-bucket.s3.amazonaws.com/trng_health_model.h5
+      #  sync: false
