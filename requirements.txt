@@ -6,3 +6,4 @@ pydantic
 scipy
 joblib
 python-multipart
+scikit-learn
